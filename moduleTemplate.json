@@ -11,7 +11,7 @@
     "moduleType": "Video",
     "baseURL": "https://cinema.7xtream.com",
     "moduleDeveloperSite": "https://github.com/xYenga/C7X",
-    "UpdateSite": "https://github.com/xYenga/C7X/blob/main/moduleTemplate.json",
+    "UpdateSite": "https://raw.githubusercontent.com/xYenga/C7X/main/moduleTemplate.json",
     "preferedServer": "",
     "preferedDownloadServer": "",
     "blackListed": [
