@@ -1,155 +1,142 @@
-
-
-    <script type="text/javascript">
-
-const DefaultLayouts = {
-         ultraWideFull : 'ultraWideFull',
-         ultraWide : 'ultraWide',
-    
-         wideFull : 'wideFull',
-         wide : 'wide',
-    
-         wideStrechedFull : 'wideStrechedFull',
-         wideStrechedFullDouble : 'WideStrechedFullDouble',
-         wideStreched : 'wideStreched',
-         wideStrechedDouble : 'wideStrechedDouble',
-    
-         wideStrechedFullList : 'wideStrechedFullList',
-         wideStrechedList : 'wideStrechedList',
-    
-         doublets : 'doublets',
-         doubletsDouble : 'doubletsDouble',
-         doubletsFull : 'doubletsFull',
-         doubletsFullDouble : 'doubletsFullDouble',
-    
-         doubletsConstant : 'doubletsConstant',
-         doubletsDoubleConstant : 'doubletsDoubleConstant',
-         doubletsFullConstant : 'doubletsFullConstant',
-         doubletsFullDoubleConstant : 'doubletsFullDoubleConstant',
-        
-         longDoublets : 'longDoublets',
-         longDoubletsDouble : 'longDoubletsDouble',
-         longDoubletsFull : 'longDoubletsFull',
-         longDoubletsFullDouble : 'longDoubletsFullDouble',
-    
-         longDoubletsConstant : 'longDoubletsConstant',
-         longDoubletsDoubleConstant : 'longDoubletsDoubleConstant',
-         longDoubletsFullConstant : 'longDoubletsFullConstant',
-         longDoubletsFullDoubleConstant : 'longDoubletsFullDoubleConstant',
-    
-         triplets : 'triplets',
-         tripletsDouble : 'tripletsDouble',
-         tripletsFull : 'tripletsFull',
-         tripletsFullDouble : 'tripletsFullDouble',
-    
-         tripletsConstant : 'tripletsConstant',
-         tripletsDoubleConstant : 'tripletsDoubleConstant',
-         tripletsFullConstant : 'tripletsFullConstant',
-         tripletsFullDoubleConstant : 'tripletsFullDoubleConstant',
-    
-         longTriplets : 'longTriplets',
-         longTripletsDouble : 'longTripletsDouble',
-         longTripletsFull : 'longTripletsFull',
-         longTripletsFullDouble : 'longTripletsFullDouble',
-    
-         longTripletsConstant : 'longTripletsConstant',
-         longTripletsDoubleConstant : 'longTripletsDoubleConstant',
-         longTripletsFullConstant : 'longTripletsFullConstant',
-         longTripletsFullDoubleConstant : 'longTripletsFullDoubleConstant',
-    
-         none: ''
-        };
-    
-    const CellDesings = {
-        Special1 : 'Special1',
-    Special2 : 'Special2',
-    Special3 : 'Special3',
-    CELLHelperText : 'CELLHelperText',
-        small1 : 'small1',
-        small2 : 'small2',
-        normal1 : 'normal1',
-        normal2 : 'normal2',
-        normal3 : 'normal3',
-        normal4 : 'normal4',
-        normal5 : 'normal5',
-        normal6 : 'normal6',
-        normal7 : 'normal7',
-
-        wide1 : 'wide1',
-        wide2 : 'wide2',
-        wide3 : 'wide3',
-        wide4 : 'wide4',
-        wide5 : 'wide5',
-        wide6 : 'wide6',
-        wide7 : 'wide7',
-        wide8 : 'wide8',
-        wide9 : 'wide9',
-        wide10 : 'wide10',
-        wide11 : 'wide11'
+<script type="text/javascript">
+    // Enhanced Search script for 7xtream KETSU Module
+    const DefaultLayouts = {
+        ultraWideFull: 'ultraWideFull',
+        ultraWide: 'ultraWide',
+        wideFull: 'wideFull',
+        wide: 'wide',
+        wideStrechedFull: 'wideStrechedFull',
+        wideStrechedFullDouble: 'WideStrechedFullDouble',
+        wideStreched: 'wideStreched',
+        wideStrechedDouble: 'wideStrechedDouble',
+        wideStrechedFullList: 'wideStrechedFullList',
+        wideStrechedList: 'wideStrechedList',
+        doublets: 'doublets',
+        doubletsDouble: 'doubletsDouble',
+        doubletsFull: 'doubletsFull',
+        doubletsFullDouble: 'doubletsFullDouble',
+        doubletsConstant: 'doubletsConstant',
+        doubletsDoubleConstant: 'doubletsDoubleConstant',
+        doubletsFullConstant: 'doubletsFullConstant',
+        doubletsFullDoubleConstant: 'doubletsFullDoubleConstant',
+        longDoublets: 'longDoublets',
+        longDoubletsDouble: 'longDoubletsDouble',
+        longDoubletsFull: 'longDoubletsFull',
+        longDoubletsFullDouble: 'longDoubletsFullDouble',
+        longDoubletsConstant: 'longDoubletsConstant',
+        longDoubletsDoubleConstant: 'longDoubletsDoubleConstant',
+        longDoubletsFullConstant: 'longDoubletsFullConstant',
+        longDoubletsFullDoubleConstant: 'longDoubletsFullDoubleConstant',
+        triplets: 'triplets',
+        tripletsDouble: 'tripletsDouble',
+        tripletsFull: 'tripletsFull',
+        tripletsFullDouble: 'tripletsFullDouble',
+        tripletsConstant: 'tripletsConstant',
+        tripletsDoubleConstant: 'tripletsDoubleConstant',
+        tripletsFullConstant: 'tripletsFullConstant',
+        tripletsFullDoubleConstant: 'tripletsFullDoubleConstant',
+        longTriplets: 'longTriplets',
+        longTripletsDouble: 'longTripletsDouble',
+        longTripletsFull: 'longTripletsFull',
+        longTripletsFullDouble: 'longTripletsFullDouble',
+        longTripletsConstant: 'longTripletsConstant',
+        longTripletsDoubleConstant: 'longTripletsDoubleConstant',
+        longTripletsFullConstant: 'longTripletsFullConstant',
+        longTripletsFullDoubleConstant: 'longTripletsFullDoubleConstant',
+        none: ''
     };
-    
+
+    const CellDesigns = {
+        Special1: 'Special1',
+        Special2: 'Special2',
+        Special3: 'Special3',
+        CELLHelperText: 'CELLHelperText',
+        small1: 'small1',
+        small2: 'small2',
+        normal1: 'normal1',
+        normal2: 'normal2',
+        normal3: 'normal3',
+        normal4: 'normal4',
+        normal5: 'normal5',
+        normal6: 'normal6',
+        normal7: 'normal7',
+        wide1: 'wide1',
+        wide2: 'wide2',
+        wide3: 'wide3',
+        wide4: 'wide4',
+        wide5: 'wide5',
+        wide6: 'wide6',
+        wide7: 'wide7',
+        wide8: 'wide8',
+        wide9: 'wide9',
+        wide10: 'wide10',
+        wide11: 'wide11'
+    };
+
     const Paging = {
-        leading : 'leading',
-        centered : 'centered',
-        none : ''
+        leading: 'leading',
+        centered: 'centered',
+        none: ''
     };
 
     const Orientation = {
-        horizontal : 'horizontal',
-        vertical : 'vertical'
+        horizontal: 'horizontal',
+        vertical: 'vertical'
     };
-    function Search(request,extra,separator,javascriptConfig,output) {
-            this.request = request;
-            this.extra = extra;
-            this.separator = separator;
-            this.javascriptConfig = javascriptConfig;
-            this.output  = output;
-        }
-    
-        function ModuleRequest(url,method,headers,httpBody) {
-            this.url = url;
-            this.method = method;
-            this.headers  = headers;
-            this.httpBody = httpBody;
-        }
-        
-        function Extra(commands,extraInfo) {
-            this.commands = commands;
-            this.extraInfo = extraInfo;
-        }
-    
-        function Commands(commandName,params) {
-            this.commandName = commandName;
-            this.params = params;
-        }
-    
-        function JavascriptConfig(removeJavascript,loadInWebView,javaScript) {
-            this.removeJavascript = removeJavascript;
-            this.loadInWebView = loadInWebView;
-            this.javaScript = javaScript;
-        }
-    
-        function KeyValue(key,value) {
-            this.key = key;
-            this.value = value;
-        }
-    
-        function Output(cellDesing,orientation,defaultLayout,paging,section,layout,data) {
-            this.cellDesing = cellDesing;
-            this.orientation  = orientation;
-            this.defaultLayout = defaultLayout;
-            this.paging = paging;
-            this.section  = section;
-            this.layout = layout;
-            this.data = data;
-        }
-    
-        function Section(sectionName,separator) {
-            this.sectionName  = sectionName;
-            this.separator = separator;
-        }
-    
-        function Layout(insets, visibleCellsWidthS,visibleCellsWidthM,visibleCellsWidthL, visibleCellsHeight, heightForVisibleCells, cellSize, ratio, constant, horizontalSpacing, verticalSpacing) {
+
+    // Constructor functions
+    function Search(request, extra, separator, javascriptConfig, output) {
+        this.request = request;
+        this.extra = extra;
+        this.separator = separator;
+        this.javascriptConfig = javascriptConfig;
+        this.output = output;
+    }
+
+    function ModuleRequest(url, method, headers, httpBody) {
+        this.url = url;
+        this.method = method;
+        this.headers = headers;
+        this.httpBody = httpBody;
+    }
+
+    function Extra(commands, extraInfo) {
+        this.commands = commands;
+        this.extraInfo = extraInfo;
+    }
+
+    function Commands(commandName, params) {
+        this.commandName = commandName;
+        this.params = params;
+    }
+
+    function JavascriptConfig(removeJavascript, loadInWebView, javaScript) {
+        this.removeJavascript = removeJavascript;
+        this.loadInWebView = loadInWebView;
+        this.javaScript = javaScript;
+    }
+
+    function KeyValue(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    function Output(cellDesing, orientation, defaultLayout, paging, section, layout, data) {
+        this.cellDesing = cellDesing;
+        this.orientation = orientation;
+        this.defaultLayout = defaultLayout;
+        this.paging = paging;
+        this.section = section;
+        this.layout = layout;
+        this.data = data;
+    }
+
+    function Section(sectionName, separator) {
+        this.sectionName = sectionName;
+        this.separator = separator;
+    }
+
+    function Layout(insets, visibleCellsWidthS, visibleCellsWidthM, visibleCellsWidthL, visibleCellsHeight, heightForVisibleCells, cellSize, ratio, constant, horizontalSpacing, verticalSpacing) {
         this.insets = insets;
         this.visibleCellsWidthS = visibleCellsWidthS;
         this.visibleCellsWidthM = visibleCellsWidthM;
@@ -162,71 +149,287 @@ const DefaultLayouts = {
         this.horizontalSpacing = horizontalSpacing;
         this.verticalSpacing = verticalSpacing;
     }
-    
-    
-        function Insets(top,bottom,left,right) {
-            this.top = top;
-            this.bottom = bottom;
-            this.left = left;
-            this.right = right;
-        }
-    
-        function Size(width,height) {
-            this.width = width;
-            this.height = height;
-        }
-    
-        function Ratio(inRelation,number1,number2) {
-            this.inRelation  = inRelation;
-            this.number1 = number1;
-            this.number2 = number2;
-    
-        } 
-    
-        function Data(image,title,description,field1,field2,field3,field4,isChapter,link,openInWebView) {
-            this.image = image;
-            this.title = title;
-            this.description = description;
-            this.field1 = field1;
-            this.field2 = field2;
-            this.field3 = field3;
-            this.field4 = field4;
-            this.isChapter  = isChapter;
-            this.link = link;
-            this.openInWebView = openInWebView;
-        }
 
-        function quickData(link,image,title,field1)  {
-                return new Data(image,title,'unknown',field1,'unknown','unknown','unknown',false,link);
+    function Insets(top, bottom, left, right) {
+        this.top = top;
+        this.bottom = bottom;
+        this.left = left;
+        this.right = right;
+    }
+
+    function Size(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    function Ratio(inRelation, number1, number2) {
+        this.inRelation = inRelation;
+        this.number1 = number1;
+        this.number2 = number2;
+    }
+
+    function Data(image, title, description, field1, field2, field3, field4, isChapter, link, openInWebView) {
+        this.image = image;
+        this.title = title;
+        this.description = description;
+        this.field1 = field1;
+        this.field2 = field2;
+        this.field3 = field3;
+        this.field4 = field4;
+        this.isChapter = isChapter;
+        this.link = link;
+        this.openInWebView = openInWebView;
+    }
+
+    // Helper functions
+    function createImageObject(imageUrl) {
+        return new ModuleRequest(imageUrl || '', 'get', emptyKeyValue, null);
+    }
+
+    function createLinkObject(linkUrl) {
+        return new ModuleRequest(linkUrl || '', 'get', emptyKeyValue, null);
+    }
+
+    function getSearchQuery() {
+        // Extract search query from various possible sources
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q') ||
+            urlParams.get('search') ||
+            urlParams.get('query') ||
+            urlParams.get('s') || '';
+
+        console.log('Search query detected:', searchQuery);
+        return searchQuery;
+    }
+
+    function scrapeSearchResults() {
+        console.log('Starting search results scraping...');
+
+        const results = [];
+
+        // Multiple selectors to find search results
+        const resultSelectors = [
+            '.search-results .movie, .search-results .item',
+            '.results .movie-item, .results .film',
+            '[class*="search"] [class*="movie"]',
+            '[class*="search"] [class*="item"]',
+            '[class*="result"] img',
+            '.container img[src*="poster"], .container img[src*="image"]',
+            'main img, .main img, .content img'
+        ];
+
+        let foundResults = [];
+
+        for (const selector of resultSelectors) {
+            foundResults = document.querySelectorAll(selector);
+            if (foundResults.length > 0) {
+                console.log(`Found ${foundResults.length} search results with selector: ${selector}`);
+                break;
             }
-
-        function shuffle(a) {
-            var j, x, i;
-            for (i = a.length - 1; i > 0; i--) {
-                j = Math.floor(Math.random() * (i + 1));
-                x = a[i];
-                a[i] = a[j];
-                a[j] = x;
-            }
-            return a;
         }
 
+        if (foundResults.length === 0) {
+            console.log('No search results found, trying fallback selectors...');
+            // Fallback: look for any images that might be movie posters
+            foundResults = document.querySelectorAll('img[src*="image"], img[src*="poster"], img[src*="thumb"]');
+        }
 
+        foundResults.forEach((element, index) => {
+            try {
+                let imageUrl = '';
+                let title = '';
+                let link = '';
+                let year = '';
+                let type = '';
 
+                if (element.tagName.toLowerCase() === 'img') {
+                    imageUrl = element.src || element.getAttribute('data-src') || element.getAttribute('data-lazy') || '';
+                    title = element.alt || element.title || '';
+
+                    // Look for parent container with more info
+                    const parent = element.closest('a, .movie, .item, [class*="movie"], [class*="item"]');
+                    if (parent) {
+                        if (parent.tagName.toLowerCase() === 'a') {
+                            link = parent.href;
+                        }
+
+                        // Extract additional info from parent
+                        const titleEl = parent.querySelector('.title, .name, h1, h2, h3, h4, h5, h6');
+                        if (titleEl) {
+                            title = titleEl.textContent.trim() || title;
+                        }
+
+                        const yearEl = parent.querySelector('.year, .date, [class*="year"]');
+                        if (yearEl) {
+                            year = yearEl.textContent.trim();
+                        }
+
+                        const typeEl = parent.querySelector('.type, .category, [class*="type"]');
+                        if (typeEl) {
+                            type = typeEl.textContent.trim();
+                        }
+                    }
+                } else {
+                    // Element is a container, look for image inside
+                    const img = element.querySelector('img');
+                    if (img) {
+                        imageUrl = img.src || img.getAttribute('data-src') || img.getAttribute('data-lazy') || '';
+                    }
+
+                    // Extract title
+                    const titleEl = element.querySelector('.title, .name, h1, h2, h3, h4, h5, h6');
+                    if (titleEl) {
+                        title = titleEl.textContent.trim();
+                    } else {
+                        title = element.getAttribute('data-title') || element.title || '';
+                    }
+
+                    // Extract link
+                    if (element.tagName.toLowerCase() === 'a') {
+                        link = element.href;
+                    } else {
+                        const linkEl = element.querySelector('a');
+                        if (linkEl) {
+                            link = linkEl.href;
+                        }
+                    }
+
+                    // Extract year and type
+                    const yearEl = element.querySelector('.year, .date, [class*="year"]');
+                    if (yearEl) {
+                        year = yearEl.textContent.trim();
+                    }
+
+                    const typeEl = element.querySelector('.type, .category, [class*="type"]');
+                    if (typeEl) {
+                        type = typeEl.textContent.trim();
+                    }
+                }
+
+                // Clean and validate data
+                title = title.replace(/\\n|\\t/g, '').trim().substring(0, 100);
+                year = year.replace(/[^0-9]/g, '').substring(0, 4);
+                type = type.toLowerCase().includes('tv') || type.toLowerCase().includes('series') ? 'TV Show' : 'Movie';
+
+                if (imageUrl && imageUrl.length > 10) {
+                    // Ensure absolute URLs
+                    if (imageUrl.startsWith('/')) {
+                        imageUrl = 'https://cinema.7xtream.com' + imageUrl;
+                    }
+                    if (link && link.startsWith('/')) {
+                        link = 'https://cinema.7xtream.com' + link;
+                    }
+
+                    const dataItem = new Data(
+                        createImageObject(imageUrl),
+                        title || `Result ${index + 1}`,
+                        '',
+                        year,
+                        type,
+                        '',
+                        '',
+                        false,
+                        createLinkObject(link),
+                        false
+                    );
+
+                    results.push(dataItem);
+                    console.log(`Added search result: ${title} (${year}) - ${type}`);
+                }
+            } catch (error) {
+                console.log('Error processing search result:', error);
+            }
+        });
+
+        console.log(`Found ${results.length} search results`);
+        return results;
+    }
+
+    // Main execution
     var savedData = document.getElementById('ketsu-final-data');
+    var parsedJson = {};
 
-    var parsedJson = JSON.parse(savedData.innerHTML); 
+    try {
+        if (savedData && savedData.innerHTML) {
+            parsedJson = JSON.parse(savedData.innerHTML);
+        }
+    } catch (e) {
+        console.log('Error parsing JSON:', e);
+        parsedJson = {};
+    }
 
     let output = [];
-    let emptyKeyValue = [new KeyValue('','')];
+    let emptyKeyValue = [new KeyValue('', '')];
 
-    // Fill the output array with output objects.
-    // Scripts cant use comments so delete them before loading them into KETSU.
-    // add a \ if you are going to use ""
+    // Get search query
+    const searchQuery = getSearchQuery();
 
-    let searchPageObject = new Search(new ModuleRequest('','',emptyKeyValue,null),new Extra([new Commands('',emptyKeyValue)],emptyKeyValue),'',new JavascriptConfig(true,false,''),output);
+    // Wait for search results to load
+    setTimeout(function () {
+        console.log('Starting search results processing...');
 
-    var finalJson = JSON.stringify(searchPageObject);
-    savedData.innerHTML = finalJson;
-    </script>
- 
+        const searchResults = scrapeSearchResults();
+
+        if (searchResults.length > 0) {
+            const searchOutput = new Output(
+                CellDesigns.normal1,
+                Orientation.vertical,
+                DefaultLayouts.doublets,
+                Paging.none,
+                new Section(`Search Results for "${searchQuery}"`, false),
+                null,
+                searchResults
+            );
+            output.push(searchOutput);
+        } else {
+            // No results found - create empty results message
+            const noResultsData = [
+                new Data(
+                    createImageObject('https://via.placeholder.com/300x450/cccccc/666666?text=No+Results'),
+                    'No Results Found',
+                    `No movies or shows found for "${searchQuery}"`,
+                    'Try different keywords',
+                    '',
+                    '',
+                    '',
+                    false,
+                    createLinkObject(''),
+                    false
+                )
+            ];
+
+            const noResultsOutput = new Output(
+                CellDesings.normal1,
+                Orientation.vertical,
+                DefaultLayouts.wide,
+                Paging.none,
+                new Section('Search Results', false),
+                null,
+                noResultsData
+            );
+            output.push(noResultsOutput);
+        }
+
+        // Create search URL based on query
+        const searchUrl = searchQuery ?
+            `https://cinema.7xtream.com/search?q=${encodeURIComponent(searchQuery)}` :
+            'https://cinema.7xtream.com/search';
+
+        // Create final search object
+        let searchPageObject = new Search(
+            new ModuleRequest(searchUrl, 'get', emptyKeyValue, null),
+            new Extra([new Commands('', emptyKeyValue)], emptyKeyValue),
+            '',
+            new JavascriptConfig(true, false, ''),
+            output
+        );
+
+        var finalJson = JSON.stringify(searchPageObject);
+        if (savedData) {
+            savedData.innerHTML = finalJson;
+        }
+
+        console.log('Search data updated successfully');
+
+    }, 2000); // Wait 2 seconds for search results to load
+</script>

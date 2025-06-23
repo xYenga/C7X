@@ -1,12 +1,12 @@
 {
   "moduleInfo": {
-    "moduleName": "7xtream",
-    "moduleInitials": "DM",
-    "moduleDesc": "7xtream",
-    "developer": "JWZ",
-    "moduleID": "C7X_CINEMA_11052025",
+    "moduleName": "7xtream Cinema",
+    "moduleInitials": "7XC",
+    "moduleDesc": "Stream movies and TV shows from 7xtream cinema platform",
+    "developer": "C7X",
+    "moduleID": "C7X_CINEMA_11052025_V2",
     "moduleImage": "https://cinema.7xtream.com/favicon.ico",
-    "moduleVersion": 0.16525,
+    "moduleVersion": 0.2,
     "moduleLenguage": "ENG",
     "moduleType": "Video",
     "baseURL": "https://cinema.7xtream.com",
@@ -14,27 +14,15 @@
     "UpdateSite": "https://raw.githubusercontent.com/xYenga/C7X/main/moduleTemplate.json",
     "preferedServer": "",
     "preferedDownloadServer": "",
-    "blackListed": [
-      ""
-    ]
+    "blackListed": []
   },
   "global": {
-    "variables": [
-      {
-        "key": "",
-        "value": ""
-      }
-    ],
-    "cookies": [
-      {
-        "key": "",
-        "value": ""
-      }
-    ],
+    "variables": [],
+    "cookies": [],
     "headers": [
       {
-        "key": "",
-        "value": ""
+        "key": "User-Agent",
+        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       }
     ]
   },
@@ -45,8 +33,8 @@
         "method": "get",
         "headers": [
           {
-            "key": "",
-            "value": ""
+            "key": "Referer",
+            "value": "https://cinema.7xtream.com/"
           }
         ],
         "httpBody": null
@@ -73,80 +61,20 @@
       "javascriptConfig": {
         "removeJavascript": true,
         "loadInWebView": false,
-        "javaScript": "const DefaultLayouts = { ultraWideFull: 'ultraWideFull', ultraWide: 'ultraWide', wideFull: 'wideFull', wide: 'wide', wideStrechedFull: 'wideStrechedFull', wideStrechedFullDouble: 'WideStrechedFullDouble', wideStreched: 'wideStreched', wideStrechedDouble: 'wideStrechedDouble', wideStrechedFullList: 'wideStrechedFullList', wideStrechedList: 'wideStrechedList', doublets: 'doublets', doubletsDouble: 'doubletsDouble', doubletsFull: 'doubletsFull', doubletsFullDouble: 'doubletsFullDouble', doubletsConstant: 'doubletsConstant', doubletsDoubleConstant: 'doubletsDoubleConstant', doubletsFullConstant: 'doubletsFullConstant', doubletsFullDoubleConstant: 'doubletsFullDoubleConstant', longDoublets: 'longDoublets', longDoubletsDouble: 'longDoubletsDouble', longDoubletsFull: 'longDoubletsFull', longDoubletsFullDouble: 'longDobletsFullDouble', longDoubletsConstant: 'longDoubletsConstant', longDoubletsDoubleConstant: 'longDoubletsDoubleConstant', longDoubletsFullConstant: 'longDoubletsFullConstant', longDoubletsFullDoubleConstant: 'longDoubletsFullDoubleConstant', triplets: 'triplets', tripletsDouble: 'tripletsDouble', tripletsFull: 'tripletsFull', tripletsFullDouble: 'tripletsFullDouble', tripletsConstant: 'tripletsConstant', tripletsDoubleConstant: 'tripletsDoubleConstant', tripletsFullConstant: 'tripletsFullConstant', tripletsFullDoubleConstant: 'tripletsFullDoubleConstant', longTriplets: 'longTriplets', longTripletsDouble: 'longTripletsDouble', longTripletsFull: 'longTripletsFull', longTripletsFullDouble: 'longTripletsFullDouble', longTripletsConstant: 'longTripletsConstant', longTripletsDoubleConstant: 'longTripletsDoubleConstant', longTripletsFullConstant: 'longTripletsFullConstant', longTripletsFullDoubleConstant: 'longTripletsFullDoubleConstant', none: '' }; const CellDesings = { Special1: 'Special1', Special2: 'Special2', Special3: 'Special3', CELLHelperText: 'CELLHelperText', small1: 'small1', small2: 'small2', normal1: 'normal1', normal2: 'normal2', normal3: 'normal3', normal4: 'normal4', normal5: 'normal5', normal6: 'normal6', normal7: 'normal7', wide1: 'wide1', wide2: 'wide2', wide3: 'wide3', wide4: 'wide4', wide5: 'wide5', wide6: 'wide6', wide7: 'wide7', wide8: 'wide8', wide9: 'wide9', wide10: 'wide10', wide11: 'wide11' }; const Paging = { leading: 'leading', centered: 'centered', none: '' }; const Orientation = { horizontal: 'horizontal', vertical: 'vertical' }; function MainPage(request, extra, javascriptConfig, output) { this.request = request; this.extra = extra; this.javascriptConfig = javascriptConfig; this.output = output; } function ModuleRequest(url, method, headers, httpBody) { this.url = url; this.method = method; this.headers = headers; this.httpBody = httpBody; } function Extra(commands, extraInfo) { this.commands = commands; this.extraInfo = extraInfo; } function Commands(commandName, params) { this.commandName = commandName; this.params = params; } function JavascriptConfig(removeJavascript, loadInWebView, javaScript) { this.removeJavascript = removeJavascript; this.loadInWebView = loadInWebView; this.javaScript = javaScript; } function KeyValue(key, value) { this.key = key; this.value = value; } function Output(cellDesing, orientation, defaultLayout, paging, section, layout, data) { this.cellDesing = cellDesing; this.orientation = orientation; this.defaultLayout = defaultLayout; this.paging = paging; this.section = section; this.layout = layout; this.data = data; } function Section(sectionName, separator) { this.sectionName = sectionName; this.separator = separator; } function Layout(insets, visibleCellsWidthS, visibleCellsWidthM, visibleCellsWidthL, visibleCellsHeight, heightForVisibleCells, cellSize, ratio, constant, horizontalSpacing, verticalSpacing) { this.insets = insets; this.visibleCellsWidthS = visibleCellsWidthS; this.visibleCellsWidthM = visibleCellsWidthM; this.visibleCellsWidthL = visibleCellsWidthL; this.visibleCellsHeight = visibleCellsHeight; this.heightForVisibleCells = heightForVisibleCells; this.cellSize = cellSize; this.ratio = ratio; this.constant = constant; this.horizontalSpacing = horizontalSpacing; this.verticalSpacing = verticalSpacing; } function Insets(top, bottom, left, right) { this.top = top; this.bottom = bottom; this.left = left; this.right = right; } function Size(width, height) { this.width = width; this.height = height; } function Ratio(inRelation, number1, number2) { this.inRelation = inRelation; this.number1 = number1; this.number2 = number2; } function Data(image, title, description, field1, field2, field3, field4, isChapter, link, openInWebView) { this.image = image; this.title = title; this.description = description; this.field1 = field1; this.field2 = field2; this.field3 = field3; this.field4 = field4; this.isChapter = isChapter; this.link = link; this.openInWebView = openInWebView; } function quickData(link, image, title, field1) { return new Data(image, title, 'unknown', field1, 'unknown', 'unknown', 'unknown', false, link); } function shuffle(a) { var j, x, i; for (i = a.length - 1; i > 0; i--) { j = Math.floor(Math.random() * (i + 1)); x = a[i]; a[i] = a[j]; a[j] = x; } return a; } var savedData = document.querySelector('div[id]'); var parsedJson = JSON.parse(savedData.innerHTML); let output = []; let emptyKeyValue = [new KeyValue('', '')]; function createImageObject(imageUrl) { return { url: imageUrl, method: 'get', headers: emptyKeyValue }; } function createLinkObject(linkUrl) { return { url: linkUrl, method: 'get', headers: emptyKeyValue }; } function scrapeMovieSection(containerClass, sectionTitle) { var container = document.querySelector('.' + containerClass); if (!container) return []; var movieItems = []; var movieCards = container.querySelectorAll('.movie_card, .movie-card, .movie, [class*=card], [class*=item]'); if (movieCards.length === 0) { movieCards = container.querySelectorAll('a, .movie-item, .poster'); } movieCards.forEach(function (card) { var img = card.querySelector('img'); var imageUrl = ''; if (img) { imageUrl = img.src || img.getAttribute('data-src') || ''; } var title = ''; var titleEl = card.querySelector('.title, .movie-title, h3, h4, .name'); if (titleEl) { title = titleEl.textContent.trim(); } else if (img && img.alt) { title = img.alt; } else if (card.title) { title = card.title; } var link = ''; if (card.tagName.toLowerCase() === 'a') { link = card.href; } else { var linkEl = card.querySelector('a'); if (linkEl) { link = linkEl.href; } } if (title || imageUrl) { var dataItem = new Data(createImageObject(imageUrl), title, '', '', '', '', '', false, createLinkObject(link), false); movieItems.push(dataItem); } }); if (movieItems.length === 0) { var allImages = container.querySelectorAll('img'); allImages.forEach(function (img) { if (img.src) { var title = img.alt || img.title || ''; var link = ''; var parent = img.closest('a'); if (parent) { link = parent.href; } var dataItem = new Data(createImageObject(img.src), title, '', '', '', '', '', false, createLinkObject(link), false); movieItems.push(dataItem); } }); } return movieItems; } var nowPlayingData = scrapeMovieSection('Now_playing_movies_div', 'Now Playing Movies'); var trendingData = scrapeMovieSection('current_popular_movies_div', 'Trending Movies'); var topRatedData = scrapeMovieSection('Top_rated_movies_div', 'Top Rated Movies'); if (nowPlayingData.length > 0) { var nowPlayingOutput = new Output(CellDesings.normal1, Orientation.horizontal, DefaultLayouts.doublets, Paging.none, new Section('Now Playing Movies', false), null, nowPlayingData); output.push(nowPlayingOutput); } if (trendingData.length > 0) { var trendingOutput = new Output(CellDesings.normal1, Orientation.horizontal, DefaultLayouts.doublets, Paging.none, new Section('Trending Movies', false), null, trendingData); output.push(trendingOutput); } if (topRatedData.length > 0) { var topRatedOutput = new Output(CellDesings.normal1, Orientation.horizontal, DefaultLayouts.doublets, Paging.none, new Section('Top Rated Movies', false), null, topRatedData); output.push(topRatedOutput); } let MainPageObject = new MainPage(new ModuleRequest('', 'get', emptyKeyValue, null), new Extra([new Commands('', emptyKeyValue)], emptyKeyValue), new JavascriptConfig(true, false, ''), output); var finalJson = JSON.stringify(MainPageObject); savedData.innerHTML = finalJson;"
-      },
+        "javaScript": "const DefaultLayouts={ultraWideFull:'ultraWideFull',ultraWide:'ultraWide',wideFull:'wideFull',wide:'wide',wideStrechedFull:'wideStrechedFull',wideStrechedFullDouble:'WideStrechedFullDouble',wideStreched:'wideStreched',wideStrechedDouble:'wideStrechedDouble',wideStrechedFullList:'wideStrechedFullList',wideStrechedList:'wideStrechedList',doublets:'doublets',doubletsDouble:'doubletsDouble',doubletsFull:'doubletsFull',doubletsFullDouble:'doubletsFullDouble',doubletsConstant:'doubletsConstant',doubletsDoubleConstant:'doubletsDoubleConstant',doubletsFullConstant:'doubletsFullConstant',doubletsFullDoubleConstant:'doubletsFullDoubleConstant',longDoublets:'longDoublets',longDoubletsDouble:'longDoubletsDouble',longDoubletsFull:'longDoubletsFull',longDoubletsFullDouble:'longDoubletsFullDouble',longDoubletsConstant:'longDoubletsConstant',longDoubletsDoubleConstant:'longDoubletsDoubleConstant',longDoubletsFullConstant:'longDoubletsFullConstant',longDoubletsFullDoubleConstant:'longDoubletsFullDoubleConstant',triplets:'triplets',tripletsDouble:'tripletsDouble',tripletsFull:'tripletsFull',tripletsFullDouble:'tripletsFullDouble',tripletsConstant:'tripletsConstant',tripletsDoubleConstant:'tripletsDoubleConstant',tripletsFullConstant:'tripletsFullConstant',tripletsFullDoubleConstant:'tripletsFullDoubleConstant',longTriplets:'longTriplets',longTripletsDouble:'longTripletsDouble',longTripletsFull:'longTripletsFull',longTripletsFullDouble:'longTripletsFullDouble',longTripletsConstant:'longTripletsConstant',longTripletsDoubleConstant:'longTripletsDoubleConstant',longTripletsFullConstant:'longTripletsFullConstant',longTripletsFullDoubleConstant:'longTripletsFullDoubleConstant',none:''};const CellDesigns={Special1:'Special1',Special2:'Special2',Special3:'Special3',CELLHelperText:'CELLHelperText',small1:'small1',small2:'small2',normal1:'normal1',normal2:'normal2',normal3:'normal3',normal4:'normal4',normal5:'normal5',normal6:'normal6',normal7:'normal7',wide1:'wide1',wide2:'wide2',wide3:'wide3',wide4:'wide4',wide5:'wide5',wide6:'wide6',wide7:'wide7',wide8:'wide8',wide9:'wide9',wide10:'wide10',wide11:'wide11'};const Paging={leading:'leading',centered:'centered',none:''};const Orientation={horizontal:'horizontal',vertical:'vertical'};function MainPage(a,b,c,d){this.request=a;this.extra=b;this.javascriptConfig=c;this.output=d}function ModuleRequest(a,b,c,d){this.url=a;this.method=b;this.headers=c;this.httpBody=d}function Extra(a,b){this.commands=a;this.extraInfo=b}function Commands(a,b){this.commandName=a;this.params=b}function JavascriptConfig(a,b,c){this.removeJavascript=a;this.loadInWebView=b;this.javaScript=c}function KeyValue(a,b){this.key=a;this.value=b}function Output(a,b,c,d,e,f,g){this.cellDesing=a;this.orientation=b;this.defaultLayout=c;this.paging=d;this.section=e;this.layout=f;this.data=g}function Section(a,b){this.sectionName=a;this.separator=b}function Layout(a,b,c,d,e,f,g,h,i,j,k){this.insets=a;this.visibleCellsWidthS=b;this.visibleCellsWidthM=c;this.visibleCellsWidthL=d;this.visibleCellsHeight=e;this.heightForVisibleCells=f;this.cellSize=g;this.ratio=h;this.constant=i;this.horizontalSpacing=j;this.verticalSpacing=k}function Insets(a,b,c,d){this.top=a;this.bottom=b;this.left=c;this.right=d}function Size(a,b){this.width=a;this.height=b}function Ratio(a,b,c){this.inRelation=a;this.number1=b;this.number2=c}function Data(a,b,c,d,e,f,g,h,i,j){this.image=a;this.title=b;this.description=c;this.field1=d;this.field2=e;this.field3=f;this.field4=g;this.isChapter=h;this.link=i;this.openInWebView=j}function createImageObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function createLinkObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function scrapeMovieSection(a,b){console.log('Scraping section:',b,'with selector:',a);const c=document.querySelector(a);if(!c){console.log('Container not found:',a);return[]}const d=[];const e=['img[src*=\"image\"], img[src*=\"poster\"], img[src*=\"thumb\"]','.movie, .movie-item, .movie-card, .film, .item','[class*=\"movie\"], [class*=\"film\"], [class*=\"item\"]','a[href*=\"movie\"], a[href*=\"watch\"], a[href*=\"play\"]','img'];let f=[];for(const g of e){f=c.querySelectorAll(g);if(f.length>0){console.log(`Found ${f.length} elements with selector: ${g}`);break}}if(f.length===0){console.log('No movie elements found in container');return[]}f.forEach((h,i)=>{try{let j='';let k='';let l='';if(h.tagName.toLowerCase()==='img'){j=h.src||h.getAttribute('data-src')||h.getAttribute('data-lazy')||'';k=h.alt||h.title||'';const m=h.closest('a');if(m){l=m.href;k=k||m.title||m.getAttribute('data-title')||''}}else{const n=h.querySelector('img');if(n){j=n.src||n.getAttribute('data-src')||n.getAttribute('data-lazy')||'';k=n.alt||n.title||''}const o=h.querySelector('.title, .name, h1, h2, h3, h4, h5, h6');if(o){k=o.textContent.trim()||k}else{k=h.textContent.trim()||h.title||h.getAttribute('data-title')||k}if(h.tagName.toLowerCase()==='a'){l=h.href}else{const p=h.querySelector('a');if(p){l=p.href}}}k=k.replace(/\\\\n|\\\\t/g,'').trim().substring(0,100);if(j&&j.length>10&&!j.includes('placeholder')){if(j.startsWith('/')){j='https://cinema.7xtream.com'+j}if(l&&l.startsWith('/')){l='https://cinema.7xtream.com'+l}const q=new Data(createImageObject(j),k||`Movie ${i+1}`,'','','','','',false,createLinkObject(l),false);d.push(q);console.log(`Added movie: ${k}, Image: ${j.substring(0,50)}...`)}}catch(r){console.log('Error processing element:',r)}});console.log(`Scraped ${d.length} movies from ${b}`);return d}var savedData=document.querySelector('div[id]')||document.getElementById('ketsu-final-data');var parsedJson={};try{if(savedData&&savedData.innerHTML){parsedJson=JSON.parse(savedData.innerHTML)}}catch(s){console.log('Error parsing JSON:',s);parsedJson={}}let output=[];let emptyKeyValue=[new KeyValue('','')];setTimeout(function(){console.log('Starting to scrape 7xtream content...');const t=[{selector:'.Now_playing_movies_div, .now-playing',title:'Now Playing Movies'},{selector:'.current_popular_movies_div, .trending',title:'Trending Movies'},{selector:'.Top_rated_movies_div, .top-rated',title:'Top Rated Movies'},{selector:'.movies, .movie-grid, .content-grid',title:'All Movies'},{selector:'main, .main, .container, .content',title:'Featured Content'}];for(const u of t){const v=scrapeMovieSection(u.selector,u.title);if(v.length>0){const w=new Output(CellDesigns.normal1,Orientation.horizontal,DefaultLayouts.doublets,Paging.none,new Section(u.title,false),null,v);output.push(w)}}if(output.length===0){console.log('No movies found, creating placeholder...');const x=[new Data(createImageObject('https://via.placeholder.com/300x450/000000/FFFFFF?text=7xtream'),'7xtream Cinema','Movies and TV Shows','Streaming','','','',false,createLinkObject('https://cinema.7xtream.com'),false)];const y=new Output(CellDesigns.normal1,Orientation.vertical,DefaultLayouts.wide,Paging.none,new Section('Featured Content',false),null,x);output.push(y)}console.log(`Created ${output.length} sections with total content`);let z=new MainPage(new ModuleRequest('https://cinema.7xtream.com/','get',emptyKeyValue,null),new Extra([new Commands('',emptyKeyValue)],emptyKeyValue),new JavascriptConfig(true,false,''),output);var finalJson=JSON.stringify(z);if(savedData){savedData.innerHTML=finalJson}console.log('MainPage data updated successfully')},2000);"
+},
       "output": [
         {
           "cellDesing": "normal1",
-          "orientation": "vertical",
-          "defaultLayout": "wide",
+          "orientation": "horizontal",
+          "defaultLayout": "doublets",
           "paging": "",
           "section": {
-            "sectionName": "",
+            "sectionName": "Featured Content",
             "separator": false
           },
-          "layout": {
-            "insets": {
-              "top": 0,
-              "bottom": 0,
-              "left": 0,
-              "right": 0
-            },
-            "visibleCellsWidthS": 2,
-            "visibleCellsWidthM": 2,
-            "visibleCellsWidthL": 2,
-            "visibleCellsHeight": 2,
-            "heightForVisibleCells": 400,
-            "cellSize": {
-              "width": 300,
-              "height": 300
-            },
-            "ratio": {
-              "inRelation": "width",
-              "number1": 1,
-              "number2": 2
-            },
-            "constant": {
-              "width": 1,
-              "height": 2
-            },
-            "horizontalSpacing": 0,
-            "verticalSpacing": 0
-          },
-          "data": [
-            {
-              "image": {
-                "url": "",
-                "method": "get",
-                "headers": [
-                  {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "httpBody": null
-              },
-              "title": "",
-              "description": "",
-              "field1": "",
-              "field2": "",
-              "field3": "",
-              "field4": "",
-              "openInWebView" : false,
-              "isChapter": false,
-              "link": {
-                "url": "",
-                "method": "",
-                "headers": [
-                  {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "httpBody": null
-              }
-            }
-          ]
+          "layout": null,
+          "data": []
         }
       ]
     }
@@ -154,12 +82,12 @@
   "search": [
     {
       "request": {
-        "url": "",
+        "url": "https://cinema.7xtream.com/search?q={searchQuery}",
         "method": "get",
         "headers": [
           {
-            "key": "",
-            "value": ""
+            "key": "Referer",
+            "value": "https://cinema.7xtream.com/"
           }
         ],
         "httpBody": null
@@ -187,82 +115,9 @@
       "javascriptConfig": {
         "removeJavascript": true,
         "loadInWebView": false,
-        "javaScript": ""
+        "javaScript": "const DefaultLayouts={ultraWideFull:'ultraWideFull',ultraWide:'ultraWide',wideFull:'wideFull',wide:'wide',doublets:'doublets',none:''};const CellDesigns={normal1:'normal1',normal2:'normal2'};const Paging={leading:'leading',centered:'centered',none:''};const Orientation={horizontal:'horizontal',vertical:'vertical'};function Search(a,b,c,d,e){this.request=a;this.extra=b;this.separator=c;this.javascriptConfig=d;this.output=e}function ModuleRequest(a,b,c,d){this.url=a;this.method=b;this.headers=c;this.httpBody=d}function Extra(a,b){this.commands=a;this.extraInfo=b}function Commands(a,b){this.commandName=a;this.params=b}function JavascriptConfig(a,b,c){this.removeJavascript=a;this.loadInWebView=b;this.javaScript=c}function KeyValue(a,b){this.key=a;this.value=b}function Output(a,b,c,d,e,f,g){this.cellDesing=a;this.orientation=b;this.defaultLayout=c;this.paging=d;this.section=e;this.layout=f;this.data=g}function Section(a,b){this.sectionName=a;this.separator=b}function Data(a,b,c,d,e,f,g,h,i,j){this.image=a;this.title=b;this.description=c;this.field1=d;this.field2=e;this.field3=f;this.field4=g;this.isChapter=h;this.link=i;this.openInWebView=j}function createImageObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function createLinkObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function getSearchQuery(){const a=new URLSearchParams(window.location.search);const b=a.get('q')||a.get('search')||a.get('query')||a.get('s')||'';console.log('Search query detected:',b);return b}function scrapeSearchResults(){console.log('Starting search results scraping...');const a=[];const b=['.search-results .movie, .search-results .item','.results .movie-item, .results .film','[class*=\"search\"] [class*=\"movie\"]','[class*=\"search\"] [class*=\"item\"]','[class*=\"result\"] img','.container img[src*=\"poster\"], .container img[src*=\"image\"]','main img, .main img, .content img'];let c=[];for(const d of b){c=document.querySelectorAll(d);if(c.length>0){console.log(`Found ${c.length} search results with selector: ${d}`);break}}if(c.length===0){console.log('No search results found, trying fallback selectors...');c=document.querySelectorAll('img[src*=\"image\"], img[src*=\"poster\"], img[src*=\"thumb\"]')}c.forEach((e,f)=>{try{let g='';let h='';let i='';let j='';let k='';if(e.tagName.toLowerCase()==='img'){g=e.src||e.getAttribute('data-src')||e.getAttribute('data-lazy')||'';h=e.alt||e.title||'';const l=e.closest('a, .movie, .item, [class*=\"movie\"], [class*=\"item\"]');if(l){if(l.tagName.toLowerCase()==='a'){i=l.href}const m=l.querySelector('.title, .name, h1, h2, h3, h4, h5, h6');if(m){h=m.textContent.trim()||h}const n=l.querySelector('.year, .date, [class*=\"year\"]');if(n){j=n.textContent.trim()}const o=l.querySelector('.type, .category, [class*=\"type\"]');if(o){k=o.textContent.trim()}}}else{const p=e.querySelector('img');if(p){g=p.src||p.getAttribute('data-src')||p.getAttribute('data-lazy')||''}const q=e.querySelector('.title, .name, h1, h2, h3, h4, h5, h6');if(q){h=q.textContent.trim()}else{h=e.getAttribute('data-title')||e.title||''}if(e.tagName.toLowerCase()==='a'){i=e.href}else{const r=e.querySelector('a');if(r){i=r.href}}const s=e.querySelector('.year, .date, [class*=\"year\"]');if(s){j=s.textContent.trim()}const t=e.querySelector('.type, .category, [class*=\"type\"]');if(t){k=t.textContent.trim()}}h=h.replace(/\\\\n|\\\\t/g,'').trim().substring(0,100);j=j.replace(/[^0-9]/g,'').substring(0,4);k=k.toLowerCase().includes('tv')||k.toLowerCase().includes('series')?'TV Show':'Movie';if(g&&g.length>10){if(g.startsWith('/')){g='https://cinema.7xtream.com'+g}if(i&&i.startsWith('/')){i='https://cinema.7xtream.com'+i}const u=new Data(createImageObject(g),h||`Result ${f+1}`,'',j,k,'','',false,createLinkObject(i),false);a.push(u);console.log(`Added search result: ${h} (${j}) - ${k}`)}}catch(v){console.log('Error processing search result:',v)}});console.log(`Found ${a.length} search results`);return a}var savedData=document.getElementById('ketsu-final-data');var parsedJson={};try{if(savedData&&savedData.innerHTML){parsedJson=JSON.parse(savedData.innerHTML)}}catch(w){console.log('Error parsing JSON:',w);parsedJson={}}let output=[];let emptyKeyValue=[new KeyValue('','')];const searchQuery=getSearchQuery();setTimeout(function(){console.log('Starting search results processing...');const x=scrapeSearchResults();if(x.length>0){const y=new Output(CellDesigns.normal1,Orientation.vertical,DefaultLayouts.doublets,Paging.none,new Section(`Search Results for \"${searchQuery}\"`,false),null,x);output.push(y)}else{const z=[new Data(createImageObject('https://via.placeholder.com/300x450/cccccc/666666?text=No+Results'),'No Results Found',`No movies or shows found for \"${searchQuery}\"`,'Try different keywords','','','',false,createLinkObject(''),false)];const aa=new Output(CellDesigns.normal1,Orientation.vertical,DefaultLayouts.wide,Paging.none,new Section('Search Results',false),null,z);output.push(aa)}const bb=searchQuery?`https://cinema.7xtream.com/search?q=${encodeURIComponent(searchQuery)}`:'https://cinema.7xtream.com/search';let cc=new Search(new ModuleRequest(bb,'get',emptyKeyValue,null),new Extra([new Commands('',emptyKeyValue)],emptyKeyValue),'',new JavascriptConfig(true,false,''),output);var finalJson=JSON.stringify(cc);if(savedData){savedData.innerHTML=finalJson}console.log('Search data updated successfully')},2000);"
       },
-      "output": [
-        {
-          "cellDesing": "normal1",
-          "orientation": "vertical",
-          "defaultLayout": "wide",
-          "paging": "",
-          "section": {
-            "sectionName": "",
-            "separator": false
-          },
-          "layout": {
-            "insets": {
-              "top": 0,
-              "bottom": 0,
-              "left": 0,
-              "right": 0
-            },
-            "visibleCellsWidthS": 2,
-            "visibleCellsWidthM": 2,
-            "visibleCellsWidthL": 2,
-            "visibleCellsHeight": 2,
-            "heightForVisibleCells": 400,
-            "cellSize": {
-              "width": 300,
-              "height": 300
-            },
-            "ratio": {
-              "inRelation": "width",
-              "number1": 1,
-              "number2": 2
-            },
-            "constant": {
-              "width": 1,
-              "height": 2
-            },
-            "horizontalSpacing": 0,
-            "verticalSpacing": 0
-          },
-          "data": [
-            {
-              "image": {
-                "url": "",
-                "method": "get",
-                "headers": [
-                  {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "httpBody": null
-              },
-              "title": "",
-              "description": "",
-              "field1": "",
-              "field2": "",
-              "field3": "",
-              "field4": "",
-              "openInWebView" : false,
-              "isChapter": false,
-              "link": {
-                "url": "empty",
-                "method": "get",
-                "headers": [
-                  {
-                    "key": "key",
-                    "value": "value"
-                  }
-                ],
-                "httpBody": null
-              }
-            }
-          ]
-        }
-      ]
+      "output": []
     }
   ],
   "info": [
@@ -272,8 +127,8 @@
         "method": "get",
         "headers": [
           {
-            "key": "",
-            "value": ""
+            "key": "Referer",
+            "value": "https://cinema.7xtream.com/"
           }
         ],
         "httpBody": null
@@ -300,7 +155,7 @@
       "javascriptConfig": {
         "removeJavascript": true,
         "loadInWebView": false,
-        "javaScript": " "
+        "javaScript": "function Info(a,b,c,d){this.request=a;this.extra=b;this.javascriptConfig=c;this.output=d}function ModuleRequest(a,b,c,d){this.url=a;this.method=b;this.headers=c;this.httpBody=d}function Extra(a,b){this.commands=a;this.extraInfo=b}function Commands(a,b){this.commandName=a;this.params=b}function JavascriptConfig(a,b,c){this.removeJavascript=a;this.loadInWebView=b;this.javaScript=c}function KeyValue(a,b){this.key=a;this.value=b}function Chapter(a,b,c){this.chapName=a;this.link=b;this.openInWebView=c}function Output(a,b,c,d,e,f,g,h,i,j){this.image=a;this.link=c;this.title=b;this.description=d;this.genres=e;this.field1=f;this.field2=g;this.field3=h;this.field4=i;this.chapters=j}function createImageObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function createLinkObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function getTextContent(a){if(!a)return'';return a.textContent.trim().replace(/\\s+/g,' ')}function extractMovieInfo(){console.log('Extracting movie/show information...');let a='';let b='';let c=[];let d='';let e='';let f='';let g='';let h='';let i=[];const j=['h1','h2','.title','.movie-title','.show-title','[class*=\"title\"]','.name','.movie-name','.show-name'];for(const k of j){const l=document.querySelector(k);if(l&&getTextContent(l).length>0){a=getTextContent(l);console.log('Found title:',a);break}}const m=['.description','.synopsis','.summary','.overview','.plot','.storyline','[class*=\"description\"]','[class*=\"synopsis\"]','[class*=\"summary\"]','p'];for(const n of m){const o=document.querySelector(n);if(o&&getTextContent(o).length>50){b=getTextContent(o);console.log('Found description:',b.substring(0,100)+'...');break}}const p=['.poster img','.movie-poster img','.show-poster img','.thumbnail img','.cover img','img[src*=\"poster\"]','img[src*=\"image\"]','img[src*=\"cover\"]'];for(const q of p){const r=document.querySelector(q);if(r&&r.src){h=r.src;console.log('Found image:',h);break}}const s=['.genres','.genre','.categories','.category','[class*=\"genre\"]','[class*=\"category\"]'];for(const t of s){const u=document.querySelectorAll(t);if(u.length>0){u.forEach(v=>{const w=getTextContent(v);if(w&&w.length<50){c.push(w)}});if(c.length>0){console.log('Found genres:',c);break}}}const x=['.year','.release-year','.date','[class*=\"year\"]','[class*=\"date\"]'];for(const y of x){const z=document.querySelector(y);if(z){const aa=getTextContent(z);const bb=aa.match(/(\\d{4})/);if(bb){d=bb[1];console.log('Found year:',d);break}}}const cc=['.rating','.score','.imdb-rating','[class*=\"rating\"]','[class*=\"score\"]'];for(const dd of cc){const ee=document.querySelector(dd);if(ee){const ff=getTextContent(ee);const gg=ff.match(/(\\d+\\.?\\d*)/);if(gg){e=gg[1]+'/10';console.log('Found rating:',e);break}}}const hh=['.duration','.runtime','.length','[class*=\"duration\"]','[class*=\"runtime\"]'];for(const ii of hh){const jj=document.querySelector(ii);if(jj){f=getTextContent(jj);console.log('Found duration:',f);break}}const kk=['.episode','.episodes .item','.season .episode','[class*=\"episode\"]','.chapter','[class*=\"chapter\"]'];for(const ll of kk){const mm=document.querySelectorAll(ll);if(mm.length>0){mm.forEach((nn,oo)=>{let pp='';let qq='';const rr=nn.querySelector('.title, .name, h3, h4, h5, h6');if(rr){pp=getTextContent(rr)}else{pp=getTextContent(nn)||`Episode ${oo+1}`}if(nn.tagName.toLowerCase()==='a'){qq=nn.href}else{const ss=nn.querySelector('a');if(ss){qq=ss.href}}if(pp.length>0&&pp.length<200){i.push(new Chapter(pp.substring(0,100),createLinkObject(qq),false))}});if(i.length>0){console.log(`Found ${i.length} episodes`);g='TV Series';break}}}if(i.length===0){g='Movie';i.push(new Chapter('Watch Movie',createLinkObject(window.location.href),false))}if(h&&h.startsWith('/')){h='https://cinema.7xtream.com'+h}return{title:a||'Unknown Title',description:b||'No description available',genres:c.length>0?c:['Unknown'],year:d||'Unknown',rating:e||'Not rated',duration:f||'Unknown',status:g||'Unknown',imageUrl:h||'',episodes:i}}var savedData=document.getElementById('ketsu-final-data');var parsedJson={};try{if(savedData&&savedData.innerHTML){parsedJson=JSON.parse(savedData.innerHTML)}}catch(tt){console.log('Error parsing JSON:',tt);parsedJson={}}let emptyKeyValue=[new KeyValue('','')];setTimeout(function(){console.log('Starting info page processing...');const uu=extractMovieInfo();const vv=new Output(createImageObject(uu.imageUrl),uu.title,createLinkObject(parsedJson.request||window.location.href),uu.description,uu.genres,uu.status,uu.year,uu.rating,uu.duration,uu.episodes);let ww=new Info(new ModuleRequest(window.location.href,'get',emptyKeyValue,null),new Extra([new Commands('',emptyKeyValue)],emptyKeyValue),new JavascriptConfig(true,false,''),vv);var finalJson=JSON.stringify(ww);if(savedData){savedData.innerHTML=finalJson}console.log('Info data updated successfully');console.log('Title:',uu.title);console.log('Episodes/Chapters:',uu.episodes.length)},2000);"
       },
       "output": {
         "image": {
@@ -327,30 +182,12 @@
         },
         "title": "",
         "description": "",
-        "genres": [
-          ""
-        ],
+        "genres": [],
         "field1": "",
         "field2": "",
         "field3": "",
         "field4": "",
-        "chapters": [
-          {
-            "chapName": "",
-            "openInWebView": false,
-            "link": {
-              "url": "empty",
-              "method": "get",
-              "headers": [
-                {
-                  "key": "key",
-                  "value": "value"
-                }
-              ],
-              "httpBody": null
-            }
-          }
-        ]
+        "chapters": []
       }
     }
   ],
@@ -361,8 +198,8 @@
         "method": "get",
         "headers": [
           {
-            "key": "key",
-            "value": "value"
+            "key": "Referer",
+            "value": "https://cinema.7xtream.com/"
           }
         ],
         "httpBody": null
@@ -387,40 +224,25 @@
         ]
       },
       "javascriptConfig": {
-        "removeJavascript": true,
+        "removeJavascript": false,
         "loadInWebView": false,
-        "javaScript": " "
+        "javaScript": "function Chapters(a,b,c,d){this.request=a;this.extra=b;this.javascriptConfig=c;this.output=d}function ModuleRequest(a,b,c,d){this.url=a;this.method=b;this.headers=c;this.httpBody=d}function Extra(a,b){this.commands=a;this.extraInfo=b}function Commands(a,b){this.commandName=a;this.params=b}function JavascriptConfig(a,b,c){this.removeJavascript=a;this.loadInWebView=b;this.javaScript=c}function KeyValue(a,b){this.key=a;this.value=b}function Output(a,b,c){this.videos=a;this.images=b;this.text=c}function Videos(a,b){this.needsResolver=a;this.rawVideo=b}function NeedsResolver(a,b){this.resolverIdentifier=a;this.link=b}function RawVideo(a){this.video=a}function Video(a,b){this.videoQuality=a;this.videoLink=b}function Text(a){this.text=a}function createLinkObject(a){return new ModuleRequest(a||'','get',emptyKeyValue,null)}function extractVideoSources(){console.log('Extracting video sources...');const a=[];const b=[];const c=['video source','video','iframe[src*=\"player\"]','iframe[src*=\"embed\"]','iframe[src*=\"stream\"]','[data-src*=\"mp4\"]','[data-src*=\"m3u8\"]','a[href*=\"mp4\"]','a[href*=\"m3u8\"]'];for(const d of c){const e=document.querySelectorAll(d);e.forEach(f=>{let g='';let h='Unknown';if(f.tagName.toLowerCase()==='source'){g=f.src;if(g.includes('720'))h='720p';else if(g.includes('1080'))h='1080p';else if(g.includes('480'))h='480p';else if(g.includes('360'))h='360p'}else if(f.tagName.toLowerCase()==='video'){g=f.src||f.currentSrc;h='Default'}else if(f.tagName.toLowerCase()==='iframe'){g=f.src;if(g.includes('youtube.com')||g.includes('youtu.be')){b.push(new NeedsResolver('youtube',createLinkObject(g)))}else if(g.includes('vimeo.com')){b.push(new NeedsResolver('vimeo',createLinkObject(g)))}else{b.push(new NeedsResolver('generic',createLinkObject(g)))}return}else if(f.tagName.toLowerCase()==='a'){g=f.href;const i=f.textContent.toLowerCase();if(i.includes('720'))h='720p';else if(i.includes('1080'))h='1080p';else if(i.includes('480'))h='480p';else if(i.includes('360'))h='360p';else h='HD'}else{g=f.getAttribute('data-src')||f.src}if(g&&g.length>10){if(g.startsWith('/')){g='https://cinema.7xtream.com'+g}a.push(new Video(h,createLinkObject(g)));console.log(`Found direct video: ${h} - ${g.substring(0,50)}...`)}});if(a.length>0||b.length>0){break}}const j=['iframe[src*=\"streamtape\"]','iframe[src*=\"doodstream\"]','iframe[src*=\"mixdrop\"]','iframe[src*=\"upstream\"]','iframe[src*=\"fembed\"]','iframe[src*=\"supervideo\"]','iframe[src*=\"videobin\"]','iframe[src*=\"streamplay\"]','[data-server]','.server-item','.player-server'];for(const k of j){const l=document.querySelectorAll(k);l.forEach(m=>{let n='';let o='Unknown';if(m.tagName.toLowerCase()==='iframe'){n=m.src;if(n.includes('streamtape'))o='StreamTape';else if(n.includes('doodstream'))o='DoodStream';else if(n.includes('mixdrop'))o='MixDrop';else if(n.includes('upstream'))o='UpStream';else if(n.includes('fembed'))o='Fembed';else if(n.includes('supervideo'))o='SuperVideo';else if(n.includes('videobin'))o='VideoBin';else if(n.includes('streamplay'))o='StreamPlay';else o='External'}else{n=m.getAttribute('data-src')||m.href;o=m.getAttribute('data-server')||m.textContent.trim()||'Server'}if(n&&n.length>10){if(n.startsWith('/')){n='https://cinema.7xtream.com'+n}b.push(new NeedsResolver(o.toLowerCase(),createLinkObject(n)));console.log(`Found resolver link: ${o} - ${n.substring(0,50)}...`)}})}if(a.length===0&&b.length===0){console.log('No video sources found, looking for fallback links...');const p=['a[href*=\"watch\"]','a[href*=\"play\"]','a[href*=\"stream\"]','.watch-btn','.play-btn','.stream-btn','[class*=\"watch\"]','[class*=\"play\"]'];for(const q of p){const r=document.querySelectorAll(q);r.forEach(s=>{const t=s.href;if(t&&t!==window.location.href){b.push(new NeedsResolver('7xtream',createLinkObject(t)));console.log(`Found fallback link: ${t}`)}});if(b.length>0)break}}return{videoSources:a,resolverLinks:b}}var savedData=document.getElementById('ketsu-final-data');var parsedJson={};try{if(savedData&&savedData.innerHTML){parsedJson=JSON.parse(savedData.innerHTML)}}catch(u){console.log('Error parsing JSON:',u);parsedJson={}}let emptyKeyValue=[new KeyValue('','')];setTimeout(function(){console.log('Starting chapters/video extraction...');const {videoSources:v,resolverLinks:w}=extractVideoSources();let x=null;if(v.length>0||w.length>0){const y=v.length>0?[new RawVideo(v)]:[];x=new Videos(w,y)}else{console.log('No video sources found, creating placeholder...');const z=new Video('HD',createLinkObject('https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'));x=new Videos([],[new RawVideo([z])])}const aa=new Output(x,null,new Text(''));let bb=new Chapters(new ModuleRequest(window.location.href,'get',emptyKeyValue,null),new Extra([new Commands('',emptyKeyValue)],emptyKeyValue),new JavascriptConfig(false,false,''),aa);var finalJson=JSON.stringify(bb);if(savedData){savedData.innerHTML=finalJson}console.log('Chapters data updated successfully');console.log('Direct videos found:',v.length);console.log('Resolver links found:',w.length)},3000);"
       },
       "output": {
         "videos": {
-          "needsResolver": [
-            {
-              "resolverIdentifier": "",
-              "link": {
-                "url": "",
-                "method": "get",
-                "headers": [
-                  {
-                    "key": "key",
-                    "value": "value"
-                  }
-                ],
-                "httpBody": null
-              }
-            }
-          ],
+          "needsResolver": [],
           "rawVideo": [
             {
               "video": [
                 {
-                  "videoQuality": "",
+                  "videoQuality": "HD",
                   "videoLink": {
-                    "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                    "url": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
                     "method": "get",
                     "headers": [
                       {
-                        "key": "key",
-                        "value": "value"
+                        "key": "",
+                        "value": ""
                       }
                     ],
                     "httpBody": null
@@ -430,19 +252,7 @@
             }
           ]
         },
-        "images": [
-          {
-            "url": "empty",
-            "method": "get",
-            "headers": [
-              {
-                "key": "key",
-                "value": "value"
-              }
-            ],
-            "httpBody": null
-          }
-        ],
+        "images": null,
         "text": {
           "text": ""
         }
@@ -452,14 +262,23 @@
   "moduleResolvers": [
     {
       "resolverInfo": {
-        "resolverName": "",
+        "resolverName": "7xtream Universal Resolver",
         "nameMatches": [
-          ""
+          "7xtream",
+          "streamtape",
+          "doodstream",
+          "mixdrop",
+          "upstream",
+          "fembed",
+          "supervideo",
+          "videobin",
+          "streamplay",
+          "generic"
         ],
-        "developer": "",
-        "moduleID": "",
+        "developer": "C7X",
+        "moduleID": "C7X_RESOLVER_001",
         "resolverVersion": 1,
-        "baseURL": ""
+        "baseURL": "https://cinema.7xtream.com"
       },
       "resolver": [
         {
@@ -468,8 +287,8 @@
             "method": "get",
             "headers": [
               {
-                "key": "key",
-                "value": "value"
+                "key": "Referer",
+                "value": "https://cinema.7xtream.com/"
               }
             ],
             "httpBody": null
@@ -495,21 +314,21 @@
           },
           "javascriptConfig": {
             "removeJavascript": false,
-            "loadInWebView": false,
-            "javaScript": ""
+            "loadInWebView": true,
+            "javaScript": "console.log('7xtream resolver running...');setTimeout(function(){const videoSources=[];const videos=document.querySelectorAll('video');videos.forEach(v=>{if(v.src){videoSources.push({videoQuality:'HD',videoLink:{url:v.src,method:'get',headers:[{key:'',value:''}],httpBody:null}})}});const sources=document.querySelectorAll('source');sources.forEach(s=>{if(s.src){let quality='Unknown';if(s.src.includes('720'))quality='720p';else if(s.src.includes('1080'))quality='1080p';else if(s.src.includes('480'))quality='480p';else quality='HD';videoSources.push({videoQuality:quality,videoLink:{url:s.src,method:'get',headers:[{key:'',value:''}],httpBody:null}})}});if(videoSources.length===0){const iframes=document.querySelectorAll('iframe');iframes.forEach(iframe=>{if(iframe.src&&(iframe.src.includes('.mp4')||iframe.src.includes('.m3u8'))){videoSources.push({videoQuality:'HD',videoLink:{url:iframe.src,method:'get',headers:[{key:'',value:''}],httpBody:null}})}});}console.log('Found',videoSources.length,'video sources');const output={moduleID:'C7X_RESOLVER_001',video:videoSources};const savedData=document.getElementById('ketsu-final-data');if(savedData){savedData.innerHTML=JSON.stringify(output)}},2000);"
           },
           "output": {
-            "moduleID": "",
+            "moduleID": "C7X_RESOLVER_001",
             "video": [
               {
-                "videoQuality": "720",
+                "videoQuality": "HD",
                 "videoLink": {
-                  "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                  "url": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
                   "method": "get",
                   "headers": [
                     {
-                      "key": "key",
-                      "value": "value"
+                      "key": "",
+                      "value": ""
                     }
                   ],
                   "httpBody": null
@@ -521,98 +340,6 @@
       ]
     }
   ],
-  "responseCodeFunctions": [
-    {
-      "code": 0,
-      "msgTitle": "",
-      "msgBody": "",
-      "type": "normal",
-      "functions": [
-        {
-          "request": {
-            "url": "empty",
-            "method": "get",
-            "headers": [
-              {
-                "key": "key",
-                "value": "value"
-              }
-            ],
-            "httpBody": null
-          },
-          "extra": {
-            "commands": [
-              {
-                "commandName": "",
-                "params": [
-                  {
-                    "key": "",
-                    "value": ""
-                  }
-                ]
-              }
-            ],
-            "extraInfo": [
-              {
-                "key": "",
-                "value": ""
-              }
-            ]
-          },
-          "javascriptConfig": {
-            "removeJavascript": true,
-            "loadInWebView": false,
-            "javaScript": ""
-          }
-        }
-      ]
-    }
-  ],
-  "helperFunctions": [
-    {
-      "functionName": "example",
-      "msgTitle": "",
-      "msgBody": "",
-      "type": "normal",
-      "functions": [
-        {
-          "request": {
-            "url": "empty",
-            "method": "get",
-            "headers": [
-              {
-                "key": "key",
-                "value": "value"
-              }
-            ],
-            "httpBody": null
-          },
-          "extra": {
-            "commands": [
-              {
-                "commandName": "",
-                "params": [
-                  {
-                    "key": "",
-                    "value": ""
-                  }
-                ]
-              }
-            ],
-            "extraInfo": [
-              {
-                "key": "",
-                "value": ""
-              }
-            ]
-          },
-          "javascriptConfig": {
-            "removeJavascript": true,
-            "loadInWebView": false,
-            "javaScript": ""
-          }
-        }
-      ]
-    }
-  ]
+  "responseCodeFunctions": [],
+  "helperFunctions": []
 }

@@ -1,96 +1,332 @@
+<script type="text/javascript">
+    // Enhanced Info script for 7xtream KETSU Module
+    function Info(request, extra, javascriptConfig, output) {
+        this.request = request;
+        this.extra = extra;
+        this.javascriptConfig = javascriptConfig;
+        this.output = output;
+    }
 
+    function ModuleRequest(url, method, headers, httpBody) {
+        this.url = url;
+        this.method = method;
+        this.headers = headers;
+        this.httpBody = httpBody;
+    }
 
-  <script type="text/javascript">
-function Info(request, extra, javascriptConfig, output) {
-    this.request = request;
-    this.extra = extra;
-    this.javascriptConfig = javascriptConfig;
-    this.output = output;
-}
+    function Extra(commands, extraInfo) {
+        this.commands = commands;
+        this.extraInfo = extraInfo;
+    }
 
-function ModuleRequest(url, method, headers, httpBody) {
-    this.url = url;
-    this.method = method;
-    this.headers = headers;
-    this.httpBody = httpBody;
-}
+    function Commands(commandName, params) {
+        this.commandName = commandName;
+        this.params = params;
+    }
 
-function Extra(commands, extraInfo) {
-    this.commands = commands;
-    this.extraInfo = extraInfo;
-}
+    function JavascriptConfig(removeJavascript, loadInWebView, javaScript) {
+        this.removeJavascript = removeJavascript;
+        this.loadInWebView = loadInWebView;
+        this.javaScript = javaScript;
+    }
 
-function Commands(commandName, params) {
-    this.commandName = commandName;
-    this.params = params;
-}
+    function KeyValue(key, value) {
+        this.key = key;
+        this.value = value;
+    }
 
-function JavascriptConfig(removeJavascript, loadInWebView, javaScript) {
-    this.removeJavascript = removeJavascript;
-    this.loadInWebView = loadInWebView;
-    this.javaScript = javaScript;
-}
+    function Chapter(chapName, link, openInWebView) {
+        this.chapName = chapName;
+        this.link = link;
+        this.openInWebView = openInWebView;
+    }
 
-function KeyValue(key, value) {
-    this.key = key;
-    this.value = value;
-}
+    function Output(image, title, link, description, genres, field1, field2, field3, field4, chapters) {
+        this.image = image;
+        this.link = link;
+        this.title = title;
+        this.description = description;
+        this.genres = genres;
+        this.field1 = field1;
+        this.field2 = field2;
+        this.field3 = field3;
+        this.field4 = field4;
+        this.chapters = chapters;
+    }
 
-function Chapter(chapName, link,openInWebView) {
-    this.chapName = chapName;
-    this.link = link;
-    this.openInWebView = openInWebView;
-}
+    // Helper functions
+    function createImageObject(imageUrl) {
+        return new ModuleRequest(imageUrl || '', 'get', emptyKeyValue, null);
+    }
 
-function Output(image, title, link, description, genres, field1, field2, field3, field4, chapters) {
-    this.image = image;
-    this.link = link;
-    this.title = title;
-    this.description = description;
-    this.genres = genres;
-    this.field1 = field1;
-    this.field2 = field2;
-    this.field3 = field3;
-    this.field4 = field4;
-    this.chapters = chapters;
-}
+    function createLinkObject(linkUrl) {
+        return new ModuleRequest(linkUrl || '', 'get', emptyKeyValue, null);
+    }
 
-function getStuff(array,match) {
-        for (var x = 0 ; x< array.length;x++) {
-            let data = array[x].innerText;
-            if (data.includes(match)) {
-                return data.replace(match,'').trim();
-            } 
+    function getTextContent(element) {
+        if (!element) return '';
+        return element.textContent.trim().replace(/\s+/g, ' ');
+    }
+
+    function extractMovieInfo() {
+        console.log('Extracting movie/show information...');
+
+        let title = '';
+        let description = '';
+        let genres = [];
+        let year = '';
+        let rating = '';
+        let duration = '';
+        let status = '';
+        let imageUrl = '';
+        let episodes = [];
+
+        // Extract title from multiple possible selectors
+        const titleSelectors = [
+            'h1', 'h2', '.title', '.movie-title', '.show-title',
+            '[class*="title"]', '.name', '.movie-name', '.show-name'
+        ];
+
+        for (const selector of titleSelectors) {
+            const titleEl = document.querySelector(selector);
+            if (titleEl && getTextContent(titleEl).length > 0) {
+                title = getTextContent(titleEl);
+                console.log('Found title:', title);
+                break;
+            }
         }
-      }
-function getHtmlStuff(array,match) {
-    for (var x = 0 ; x< array.length;x++) {
-    let data = array[x].innerText;
-    if (data.includes(match)) {
-        return array[x];
-    } 
-}
-}
 
-var savedData = document.getElementById('ketsu-final-data');
-var parsedJson = JSON.parse(savedData.innerHTML);
-let emptyKeyValue = [new KeyValue('', '')];
+        // Extract description/synopsis
+        const descriptionSelectors = [
+            '.description', '.synopsis', '.summary', '.overview',
+            '.plot', '.storyline', '[class*="description"]',
+            '[class*="synopsis"]', '[class*="summary"]', 'p'
+        ];
 
-var episodes = [];
-var type = 'empty';
-var status = 'Unknown';
-var genres = [];
-var desc = '';
-var title = '';
-var image = '';
-image = new ModuleRequest(image,'get',emptyKeyValue,null);
-var genresArray = [];
+        for (const selector of descriptionSelectors) {
+            const descEl = document.querySelector(selector);
+            if (descEl && getTextContent(descEl).length > 50) {
+                description = getTextContent(descEl);
+                console.log('Found description:', description.substring(0, 100) + '...');
+                break;
+            }
+        }
 
-// Fill the output object below with data. 
-    // Scripts cant use comments so delete them before loading them into KETSU.
-    // add a \ if you are going to use ""
+        // Extract poster/image
+        const imageSelectors = [
+            '.poster img', '.movie-poster img', '.show-poster img',
+            '.thumbnail img', '.cover img', 'img[src*="poster"]',
+            'img[src*="image"]', 'img[src*="cover"]'
+        ];
 
-let infoPageObject = new Info(new ModuleRequest('', '', emptyKeyValue, null), new Extra([new Commands('', emptyKeyValue)], emptyKeyValue), new JavascriptConfig(false, false, ''), new Output(image, title, parsedJson.request, desc, genres, status, 'Anime', type, 'Eps: '  + episodes.length, episodes));
-var finalJson = JSON.stringify(infoPageObject);
-savedData.innerHTML = finalJson;
+        for (const selector of imageSelectors) {
+            const imgEl = document.querySelector(selector);
+            if (imgEl && imgEl.src) {
+                imageUrl = imgEl.src;
+                console.log('Found image:', imageUrl);
+                break;
+            }
+        }
+
+        // Extract genres
+        const genreSelectors = [
+            '.genres', '.genre', '.categories', '.category',
+            '[class*="genre"]', '[class*="category"]'
+        ];
+
+        for (const selector of genreSelectors) {
+            const genreEls = document.querySelectorAll(selector);
+            if (genreEls.length > 0) {
+                genreEls.forEach(el => {
+                    const genreText = getTextContent(el);
+                    if (genreText && genreText.length < 50) {
+                        genres.push(genreText);
+                    }
+                });
+                if (genres.length > 0) {
+                    console.log('Found genres:', genres);
+                    break;
+                }
+            }
+        }
+
+        // Extract year
+        const yearSelectors = [
+            '.year', '.release-year', '.date', '[class*="year"]', '[class*="date"]'
+        ];
+
+        for (const selector of yearSelectors) {
+            const yearEl = document.querySelector(selector);
+            if (yearEl) {
+                const yearText = getTextContent(yearEl);
+                const yearMatch = yearText.match(/(\d{4})/);
+                if (yearMatch) {
+                    year = yearMatch[1];
+                    console.log('Found year:', year);
+                    break;
+                }
+            }
+        }
+
+        // Extract rating
+        const ratingSelectors = [
+            '.rating', '.score', '.imdb-rating', '[class*="rating"]', '[class*="score"]'
+        ];
+
+        for (const selector of ratingSelectors) {
+            const ratingEl = document.querySelector(selector);
+            if (ratingEl) {
+                const ratingText = getTextContent(ratingEl);
+                const ratingMatch = ratingText.match(/(\d+\.?\d*)/);
+                if (ratingMatch) {
+                    rating = ratingMatch[1] + '/10';
+                    console.log('Found rating:', rating);
+                    break;
+                }
+            }
+        }
+
+        // Extract duration
+        const durationSelectors = [
+            '.duration', '.runtime', '.length', '[class*="duration"]', '[class*="runtime"]'
+        ];
+
+        for (const selector of durationSelectors) {
+            const durationEl = document.querySelector(selector);
+            if (durationEl) {
+                duration = getTextContent(durationEl);
+                console.log('Found duration:', duration);
+                break;
+            }
+        }
+
+        // Check if it's a TV show and extract episodes
+        const episodeSelectors = [
+            '.episode', '.episodes .item', '.season .episode',
+            '[class*="episode"]', '.chapter', '[class*="chapter"]'
+        ];
+
+        for (const selector of episodeSelectors) {
+            const episodeEls = document.querySelectorAll(selector);
+            if (episodeEls.length > 0) {
+                episodeEls.forEach((el, index) => {
+                    let episodeTitle = '';
+                    let episodeLink = '';
+
+                    // Extract episode title
+                    const titleEl = el.querySelector('.title, .name, h3, h4, h5, h6');
+                    if (titleEl) {
+                        episodeTitle = getTextContent(titleEl);
+                    } else {
+                        episodeTitle = getTextContent(el) || `Episode ${index + 1}`;
+                    }
+
+                    // Extract episode link
+                    if (el.tagName.toLowerCase() === 'a') {
+                        episodeLink = el.href;
+                    } else {
+                        const linkEl = el.querySelector('a');
+                        if (linkEl) {
+                            episodeLink = linkEl.href;
+                        }
+                    }
+
+                    if (episodeTitle.length > 0 && episodeTitle.length < 200) {
+                        episodes.push(new Chapter(
+                            episodeTitle.substring(0, 100),
+                            createLinkObject(episodeLink),
+                            false
+                        ));
+                    }
+                });
+
+                if (episodes.length > 0) {
+                    console.log(`Found ${episodes.length} episodes`);
+                    status = 'TV Series';
+                    break;
+                }
+            }
+        }
+
+        // If no episodes found, it's likely a movie
+        if (episodes.length === 0) {
+            status = 'Movie';
+            // Create a single "Watch" chapter for movies
+            episodes.push(new Chapter(
+                'Watch Movie',
+                createLinkObject(window.location.href),
+                false
+            ));
+        }
+
+        // Ensure absolute image URL
+        if (imageUrl && imageUrl.startsWith('/')) {
+            imageUrl = 'https://cinema.7xtream.com' + imageUrl;
+        }
+
+        return {
+            title: title || 'Unknown Title',
+            description: description || 'No description available',
+            genres: genres.length > 0 ? genres : ['Unknown'],
+            year: year || 'Unknown',
+            rating: rating || 'Not rated',
+            duration: duration || 'Unknown',
+            status: status || 'Unknown',
+            imageUrl: imageUrl || '',
+            episodes: episodes
+        };
+    }
+
+    // Main execution
+    var savedData = document.getElementById('ketsu-final-data');
+    var parsedJson = {};
+
+    try {
+        if (savedData && savedData.innerHTML) {
+            parsedJson = JSON.parse(savedData.innerHTML);
+        }
+    } catch (e) {
+        console.log('Error parsing JSON:', e);
+        parsedJson = {};
+    }
+
+    let emptyKeyValue = [new KeyValue('', '')];
+
+    // Wait for page content to load
+    setTimeout(function () {
+        console.log('Starting info page processing...');
+
+        const movieInfo = extractMovieInfo();
+
+        // Create info output object
+        const infoOutput = new Output(
+            createImageObject(movieInfo.imageUrl),
+            movieInfo.title,
+            createLinkObject(parsedJson.request || window.location.href),
+            movieInfo.description,
+            movieInfo.genres,
+            movieInfo.status,          // field1: Movie/TV Series
+            movieInfo.year,            // field2: Release year
+            movieInfo.rating,          // field3: Rating
+            movieInfo.duration,        // field4: Duration
+            movieInfo.episodes
+        );
+
+        let infoPageObject = new Info(
+            new ModuleRequest(window.location.href, 'get', emptyKeyValue, null),
+            new Extra([new Commands('', emptyKeyValue)], emptyKeyValue),
+            new JavascriptConfig(true, false, ''),
+            infoOutput
+        );
+
+        var finalJson = JSON.stringify(infoPageObject);
+        if (savedData) {
+            savedData.innerHTML = finalJson;
+        }
+
+        console.log('Info data updated successfully');
+        console.log('Title:', movieInfo.title);
+        console.log('Episodes/Chapters:', movieInfo.episodes.length);
+
+    }, 2000); // Wait 2 seconds for content to load
 </script>

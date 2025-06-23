@@ -1,84 +1,349 @@
-
-    <script type="text/javascript">    
-        function Chapters(request, extra, javascriptConfig, output) {
+<script type="text/javascript">
+    // Enhanced Chapters script for 7xtream KETSU Module
+    function Chapters(request, extra, javascriptConfig, output) {
         this.request = request;
         this.extra = extra;
         this.javascriptConfig = javascriptConfig;
         this.output = output;
     }
-    
+
     function ModuleRequest(url, method, headers, httpBody) {
         this.url = url;
         this.method = method;
         this.headers = headers;
         this.httpBody = httpBody;
     }
-    
+
     function Extra(commands, extraInfo) {
         this.commands = commands;
         this.extraInfo = extraInfo;
     }
-    
+
     function Commands(commandName, params) {
         this.commandName = commandName;
         this.params = params;
     }
-    
+
     function JavascriptConfig(removeJavascript, loadInWebView, javaScript) {
         this.removeJavascript = removeJavascript;
         this.loadInWebView = loadInWebView;
         this.javaScript = javaScript;
     }
-    
+
     function KeyValue(key, value) {
         this.key = key;
         this.value = value;
     }
-    
-    function Output( videos, images, text) {
+
+    function Output(videos, images, text) {
         this.videos = videos;
         this.images = images;
         this.text = text;
     }
-    
+
     function Videos(needsResolver, rawVideo) {
         this.needsResolver = needsResolver;
         this.rawVideo = rawVideo;
     }
-    
+
     function NeedsResolver(resolverIdentifier, link) {
         this.resolverIdentifier = resolverIdentifier;
         this.link = link;
     }
-    
+
     function RawVideo(video) {
         this.video = video;
     }
-    
+
     function Video(videoQuality, videoLink) {
         this.videoQuality = videoQuality;
         this.videoLink = videoLink;
     }
-    
 
-    
     function Text(text) {
         this.text = text;
     }
-    
-    var output = [];
+
+    // Helper functions
+    function createLinkObject(linkUrl) {
+        return new ModuleRequest(linkUrl || '', 'get', emptyKeyValue, null);
+    }
+
+    function extractVideoSources() {
+        console.log('Extracting video sources...');
+
+        const videoSources = [];
+        const resolverLinks = [];
+
+        // Look for direct video sources
+        const videoSelectors = [
+            'video source',
+            'video',
+            'iframe[src*="player"]',
+            'iframe[src*="embed"]',
+            'iframe[src*="stream"]',
+            '[data-src*="mp4"]',
+            '[data-src*="m3u8"]',
+            'a[href*="mp4"]',
+            'a[href*="m3u8"]'
+        ];
+
+        for (const selector of videoSelectors) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                let videoUrl = '';
+                let quality = 'Unknown';
+
+                if (el.tagName.toLowerCase() === 'source') {
+                    videoUrl = el.src;
+                    // Try to extract quality from src or parent
+                    if (videoUrl.includes('720')) quality = '720p';
+                    else if (videoUrl.includes('1080')) quality = '1080p';
+                    else if (videoUrl.includes('480')) quality = '480p';
+                    else if (videoUrl.includes('360')) quality = '360p';
+                } else if (el.tagName.toLowerCase() === 'video') {
+                    videoUrl = el.src || el.currentSrc;
+                    quality = 'Default';
+                } else if (el.tagName.toLowerCase() === 'iframe') {
+                    // iframe sources might need resolvers
+                    videoUrl = el.src;
+                    if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                        resolverLinks.push(new NeedsResolver('youtube', createLinkObject(videoUrl)));
+                    } else if (videoUrl.includes('vimeo.com')) {
+                        resolverLinks.push(new NeedsResolver('vimeo', createLinkObject(videoUrl)));
+                    } else {
+                        resolverLinks.push(new NeedsResolver('generic', createLinkObject(videoUrl)));
+                    }
+                    return; // Skip adding to direct video sources
+                } else if (el.tagName.toLowerCase() === 'a') {
+                    videoUrl = el.href;
+                    const qualityText = el.textContent.toLowerCase();
+                    if (qualityText.includes('720')) quality = '720p';
+                    else if (qualityText.includes('1080')) quality = '1080p';
+                    else if (qualityText.includes('480')) quality = '480p';
+                    else if (qualityText.includes('360')) quality = '360p';
+                    else quality = 'HD';
+                } else {
+                    videoUrl = el.getAttribute('data-src') || el.src;
+                }
+
+                if (videoUrl && videoUrl.length > 10) {
+                    // Ensure absolute URL
+                    if (videoUrl.startsWith('/')) {
+                        videoUrl = 'https://cinema.7xtream.com' + videoUrl;
+                    }
+
+                    videoSources.push(new Video(quality, createLinkObject(videoUrl)));
+                    console.log(`Found direct video: ${quality} - ${videoUrl.substring(0, 50)}...`);
+                }
+            });
+
+            if (videoSources.length > 0 || resolverLinks.length > 0) {
+                break; // Found sources, no need to check other selectors
+            }
+        }
+
+        // Look for streaming platform embeds that need resolvers
+        const embedSelectors = [
+            'iframe[src*="streamtape"]',
+            'iframe[src*="doodstream"]',
+            'iframe[src*="mixdrop"]',
+            'iframe[src*="upstream"]',
+            'iframe[src*="fembed"]',
+            'iframe[src*="supervideo"]',
+            'iframe[src*="videobin"]',
+            'iframe[src*="streamplay"]',
+            '[data-server]',
+            '.server-item',
+            '.player-server'
+        ];
+
+        for (const selector of embedSelectors) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                let embedUrl = '';
+                let serverName = 'Unknown';
+
+                if (el.tagName.toLowerCase() === 'iframe') {
+                    embedUrl = el.src;
+                    // Extract server name from URL
+                    if (embedUrl.includes('streamtape')) serverName = 'StreamTape';
+                    else if (embedUrl.includes('doodstream')) serverName = 'DoodStream';
+                    else if (embedUrl.includes('mixdrop')) serverName = 'MixDrop';
+                    else if (embedUrl.includes('upstream')) serverName = 'UpStream';
+                    else if (embedUrl.includes('fembed')) serverName = 'Fembed';
+                    else if (embedUrl.includes('supervideo')) serverName = 'SuperVideo';
+                    else if (embedUrl.includes('videobin')) serverName = 'VideoBin';
+                    else if (embedUrl.includes('streamplay')) serverName = 'StreamPlay';
+                    else serverName = 'External';
+                } else {
+                    embedUrl = el.getAttribute('data-src') || el.href;
+                    serverName = el.getAttribute('data-server') || el.textContent.trim() || 'Server';
+                }
+
+                if (embedUrl && embedUrl.length > 10) {
+                    // Ensure absolute URL
+                    if (embedUrl.startsWith('/')) {
+                        embedUrl = 'https://cinema.7xtream.com' + embedUrl;
+                    }
+
+                    resolverLinks.push(new NeedsResolver(serverName.toLowerCase(), createLinkObject(embedUrl)));
+                    console.log(`Found resolver link: ${serverName} - ${embedUrl.substring(0, 50)}...`);
+                }
+            });
+        }
+
+        // If no direct videos or embeds found, look for any links that might be video sources
+        if (videoSources.length === 0 && resolverLinks.length === 0) {
+            console.log('No video sources found, looking for fallback links...');
+
+            const fallbackSelectors = [
+                'a[href*="watch"]',
+                'a[href*="play"]',
+                'a[href*="stream"]',
+                '.watch-btn',
+                '.play-btn',
+                '.stream-btn',
+                '[class*="watch"]',
+                '[class*="play"]'
+            ];
+
+            for (const selector of fallbackSelectors) {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    const linkUrl = el.href;
+                    if (linkUrl && linkUrl !== window.location.href) {
+                        resolverLinks.push(new NeedsResolver('7xtream', createLinkObject(linkUrl)));
+                        console.log(`Found fallback link: ${linkUrl}`);
+                    }
+                });
+
+                if (resolverLinks.length > 0) break;
+            }
+        }
+
+        return { videoSources, resolverLinks };
+    }
+
+    function extractImages() {
+        console.log('Extracting images...');
+
+        const images = [];
+
+        // Look for movie/show images
+        const imageSelectors = [
+            '.gallery img',
+            '.screenshots img',
+            '.images img',
+            '.poster img',
+            '.backdrop img'
+        ];
+
+        for (const selector of imageSelectors) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                const imageUrl = el.src || el.getAttribute('data-src');
+                if (imageUrl && imageUrl.length > 10) {
+                    const absoluteUrl = imageUrl.startsWith('/') ?
+                        'https://cinema.7xtream.com' + imageUrl : imageUrl;
+                    images.push(createLinkObject(absoluteUrl));
+                    console.log(`Found image: ${absoluteUrl.substring(0, 50)}...`);
+                }
+            });
+
+            if (images.length > 0) break;
+        }
+
+        return images;
+    }
+
+    function extractAdditionalText() {
+        console.log('Extracting additional text information...');
+
+        let additionalInfo = '';
+
+        // Look for additional information like cast, director, etc.
+        const infoSelectors = [
+            '.cast',
+            '.director',
+            '.genre',
+            '.info',
+            '.details',
+            '.metadata'
+        ];
+
+        for (const selector of infoSelectors) {
+            const element = document.querySelector(selector);
+            if (element) {
+                const text = element.textContent.trim();
+                if (text.length > 0) {
+                    additionalInfo += text + '\n';
+                }
+            }
+        }
+
+        return additionalInfo.trim();
+    }
+
+    // Main execution
     var savedData = document.getElementById('ketsu-final-data');
-    var parsedJson = JSON.parse(savedData.innerHTML);
-    
-    var emptyKeyValue = [new KeyValue('', '')];
+    var parsedJson = {};
 
-    // Fill the output object with the data, depending on your module data type (images, text or video) nulllify the ones that you dont need.
-        // Scripts cant use comments so delete them before loading them into KETSU.
-    // add a \ if you are going to use ""
+    try {
+        if (savedData && savedData.innerHTML) {
+            parsedJson = JSON.parse(savedData.innerHTML);
+        }
+    } catch (e) {
+        console.log('Error parsing JSON:', e);
+        parsedJson = {};
+    }
 
-    let emptyExtra = new Extra([new Commands('', emptyKeyValue)], emptyKeyValue);
-    var chaptersObject = new Chapters(new ModuleRequest('', '', emptyKeyValue, null), emptyExtra, new JavascriptConfig(false, false, ''), new Output(new Videos(null, output), null, null));
-    var finalJson = JSON.stringify(chaptersObject);
-    savedData.innerHTML = finalJson;
-    
-    </script>
+    let emptyKeyValue = [new KeyValue('', '')];
+
+    // Wait for page content to load
+    setTimeout(function () {
+        console.log('Starting chapters/video extraction...');
+
+        const { videoSources, resolverLinks } = extractVideoSources();
+        const images = extractImages();
+        const additionalText = extractAdditionalText();
+
+        // Create video output
+        let videoOutput = null;
+
+        if (videoSources.length > 0 || resolverLinks.length > 0) {
+            const rawVideos = videoSources.length > 0 ? [new RawVideo(videoSources)] : [];
+            videoOutput = new Videos(resolverLinks, rawVideos);
+        } else {
+            // Create placeholder if no videos found
+            console.log('No video sources found, creating placeholder...');
+            const placeholderVideo = new Video('HD', createLinkObject('https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'));
+            videoOutput = new Videos([], [new RawVideo([placeholderVideo])]);
+        }
+
+        // Create chapters output
+        const chaptersOutput = new Output(
+            videoOutput,
+            images.length > 0 ? images : null,
+            new Text(additionalText)
+        );
+
+        let chaptersObject = new Chapters(
+            new ModuleRequest(window.location.href, 'get', emptyKeyValue, null),
+            new Extra([new Commands('', emptyKeyValue)], emptyKeyValue),
+            new JavascriptConfig(false, false, ''),
+            chaptersOutput
+        );
+
+        var finalJson = JSON.stringify(chaptersObject);
+        if (savedData) {
+            savedData.innerHTML = finalJson;
+        }
+
+        console.log('Chapters data updated successfully');
+        console.log('Direct videos found:', videoSources.length);
+        console.log('Resolver links found:', resolverLinks.length);
+        console.log('Images found:', images.length);
+
+    }, 3000); // Wait 3 seconds for video players to load
+</script>
